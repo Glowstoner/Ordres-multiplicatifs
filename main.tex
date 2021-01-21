@@ -49,15 +49,15 @@ g & : & (\mathbb{N}, \mathbb{N}_{\geq 2}) & \to & \mathbb{N} \\
  & & a,m & \mapsto & \alpha \\
 \end{array}$\\ où a est la base et m le modulo\\
 Prenons par exemple $a=3$, faisons varier les valeurs de m. Voici les valeurs de g(a, m) pour $m\in\llbracket 2~;~10 \rrbracket$ :\\
-\includegraphics{Figure_1.png}\\
+\includegraphics{images/Figure_1.png}\\
 Les points ont été reliés pour une meilleure visibilité. Maintenant voyons les valeurs de $g(a,m)$ pour $m\in\llbracket 2~;~100 \rrbracket$ :\\
-\includegraphics{Figure_2.png}\\
+\includegraphics{images/Figure_2.png}\\
 On peut remarquer des différents "pics" de la fonction, correspondant ici aux valeurs : 2, 5, 7, 17, 19, 29, 31, 43, 53, 79 et 89. Ces "pics" sont alignés sur la droite d'équation $y=m-1$. Ces valeurs semblent être des nombres premiers.\\
 Ainsi les solutions $S_g$ de l'équation $g(a, m) = m - 1$ admettent $S_g\in\mathbb{E}$ avec parfois $\mathbb{E}\in\mathbb{P}$.
 Cela peut se démontrer avec le petit théorème de Fermat.\\
 Soit $p\in\mathbb{P}$ alors $a^{p-1}\equiv1[p]$ ainsi on retrouve la fonction $g(a, m)$ avec $m=p$ qui admet $g(a, p) = p - 1$ car ici $\alpha=p-1$. p est alors forcément solution de l'équation $g(a, m) = m - 1$ quand $m = p$. Donc m $\in\mathbb{E}$. Cependant, il est faux de dire que $\forall p \in\mathbb{P},p\in\mathbb{E}$ car la réciproque du petit théorème de Fermat n'est pas valable. En effet, $\mathbb{E}$ inclut aussi bien les nombres premiers que les nombres de Carmichael, qui sont des nombres absoluments pseudo-premiers.\\
 Pour obtenir d'avantage de nombres satisfaisant cette équation, il est possible de faire l'union de différentes solutions en fonction des différentes valeurs de a.\\
-\includegraphics{Figure_3.png}\\
+\includegraphics{images/Figure_3.png}\\
 23 nombres premiers ou absolument pseudo-premiers ont été obtenus avec $a = 1$ jusqu'à $a=6$. La droite d'équation $y = m - 1$ a été représentée. On peut remarquer que la base $a=1$ admet toujours $\alpha = 1$. De plus la base $a=0$, n'a pas été mentionnée, celle ci n'admettant aucune solution.\\
 Autrement dit, la valeur $\alpha$ vérifie cette équation :
 \begin{equation}
@@ -82,7 +82,7 @@ Soit $h(m) = Frac\left(\frac{a^{m-1}-1}{m}\right)$ et $S_a$ l'ensemble de soluti
 
 \section{Approximation de la fonction $Frac$ par un polynôme trigonométrique}
 La fonction $Frac$ utilisée précédemment dans la fonction h ainsi que ces généralités à n'importe quel modulo, trouvant ainsi l'ordre multiplicatif de a modulo m, se présente ainsi :\\
-\includegraphics{Figure_4.png}\\
+\includegraphics{images/Figure_4.png}\\
 Cette fonction semble assez simple à approximer avec une série de Fourier car on remarque qu'il existe une fonction 1-périodique continue par morceaux admettant $f(t) = t$ sur l'intervalle $[0;1[$. On peut tout de suite indiquer que $\omega=\frac{2\pi}{1}=2\pi$. On peut ainsi calculer les coefficients : \\
 \begin{equation}
 \begin{split}
@@ -153,11 +153,18 @@ Soit l'équation $E : Frac\left(\frac{\ln(m\left\lfloor x \right\rfloor+1)}{\ln(
 \begin{equation}
 E : \frac{1}{2}-\frac{1}{\pi}\sum_{k=1}^{+\infty}\frac{1}{k}\sin\left[\frac{2k\pi}{\ln(a)}\ln\left[m\left(x-\frac{1}{2}+\frac{1}{\pi}\sum_{k=1}^{+\infty}\frac{\sin(2k\pi x)}{k}\right)+1\right]\right]=0\notag
 \end{equation}\\
-\emph{Une modélisation de la fonction en image jointe aurait été pratique, cependant mon ordinateur n'ayant pas les capacités matérielles pour ce calcul, il est sera impossible.}\\
-Soit $T$ l'ensemble des solutions de $E$ en fonction d'une valeur de $a$ et de $m$, on peut déjà constater qu'une valeur $f(\alpha)$ obtenue, s'étend sur un intervalle de part la partie entière : $[f(\alpha) ; f(\alpha)+1[ \in T$, il faudra ainsi prendre la valeur minimum de cet intervale, ou prendre : $\forall x\in T, q\alpha = \left\lfloor x \right\rfloor \forall q\in\mathbb{N}$
 
+Soit $T$ l'ensemble des solutions de $E$ en fonction d'une valeur de $a$ et de $m$, on peut déjà constater qu'une valeur $f(\alpha)$ obtenue, s'étend sur un intervalle de part la partie entière : $[f(\alpha) ; f(\alpha)+1[ \in T$, il faudra ainsi prendre la valeur minimum de cet intervale, ou prendre : $\forall x\in T, q\alpha = \left\lfloor x \right\rfloor \forall q\in\mathbb{N}$
 Par ailleurs, par le même procédé, l'on peut obtenir une équation pour obtenir les élements de $\mathbb{E}$. Il suffit simplement de résoudre $h(\left\lfloor x \right\rfloor) = 0$. \emph{L'utilisation de "simplement" laisse à désirer.}\\
+Par exemple, prenons pour $a=4$, $m=7$, ayant une précision (cela correspond au calcul d'une série partielle jusqu'à une borne maximale), ici \emph{1000}.
+\includegraphics[scale=0.75]{images/Figure_5.png}\\
+La courbe bleue correspond à la fonction utilisant la "vraie" fonction $floor$ et $frac$, celle en orange correspond à l'approximation.\\
+\includegraphics[scale=0.75]{images/Figure_6.png}\\
+Cependant, l'on peut constater un décalage de la courbe orange par rapport à la véritable fonction. Ce décalage prend forme à toutes les valeurs où $E$ admet des solutions. Soit $S_1$ cette ensemble de solutions. On peut donc conjecturer que les véritables solutions de l'ensemble $S_2$ admettent $\forall s \in S_1, s - 1 \in S_2$.\\
+\includegraphics[scale=0.70]{images/Figure_7.png}\\
+\includegraphics[scale=0.70]{images/Figure_8.png}\\
+Une solution en $x=585$ existe, on remarque qu'elle apparaît en $x=586$ par l'approximation, toujours avec ce fameux décalage inexpliqué.
 
 \section{Conclusion}
-La détermination exacte par un calcul algébrique des valeurs $\alpha$ reste encore un long travail par la résolution de $E$ qui semble loin d'être triviale. La détermination des nombres premiers n'est pas abordée ici, par la réciproque fausse du petit théorème de Fermat. Cependant, serait-il possible d'avoir comme même une fonction de répartition des nombres premiers à travers l'ensemble $\mathbb{E}$ ? Aussi, la force de l'approximation peut laisser à désirer, de part le phénomène de Gibbs pouvant rendre les calculs faux.
+La détermination exacte par un calcul algébrique des valeurs $\alpha$ reste encore un long travail par la résolution de $E$ qui semble loin d'être triviale. La détermination des nombres premiers n'est pas abordée ici, par la réciproque fausse du petit théorème de Fermat. Cependant, serait-il possible d'avoir comme même une fonction de répartition des nombres premiers à travers l'ensemble $\mathbb{E}$ ? Aussi, la force de l'approximation peut laisser à désirer, de part le phénomène de Gibbs pouvant rendre les calculs faux, mais ce phénomène ne semble pas impacter grandement la validité des résultats. Enfin, comment expliquer le décalage de 1 des solutions de la fonction approximée, et surtout peut-on résoudre $E$ ?
 \end{document}
