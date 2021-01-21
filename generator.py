@@ -87,14 +87,23 @@ def frac_aprx(x, m):
 def frac_basic(x):
     return x - math.floor(x)
 
-def get_aprx(a, mod, m):
+def get_aprx(a, mod, m, rg, prec, ax):
     f = lambda x: frac_aprx(math.log(mod*(x-frac_aprx(x, m)) + 1)/math.log(a), m)
-    x = [0.1*k for k in range(1, 200000)]
+    x = [prec*k for k in range(1, int((1/prec)*rg+1))]
     y = [f(k) for k in x]
-    plt.plot(x, y)
+    ax.plot(x, y)
 
-def get_basic(a, mod):
+def get_basic(a, mod, rg, prec, ax):
     f = lambda x: frac_basic(math.log(mod*math.floor(x)+1)/math.log(a))
-    x = [0.1*k for k in range(1, 200000)]
+    x = [prec*k for k in range(1, int((1/prec)*rg+1))]
     y = [f(k) for k in x]
-    plt.plot(x, y)
+    ax.plot(x, y)
+
+def plot_aprx(a, mod, m, rg, prec):
+    fig, ax = plt.subplots()
+    ax.set_title("Approximation pour a={} et m={} de 1 à {}, prec={}".format(a, mod, rg, m))
+    get_basic(a, mod, rg, prec, ax)
+    get_aprx(a, mod, m, rg, prec, ax)
+    ax.set_ylabel("valeur décimale restante")
+    ax.set_xlabel("valeur de f(x)")
+    plt.show()
